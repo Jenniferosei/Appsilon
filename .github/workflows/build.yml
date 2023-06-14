@@ -27,6 +27,8 @@ jobs:
           tags: |
             <your_dockerhub_username>/flask-app:latest
             <your_dockerhub_username>/flask-app:${{ github.sha }}
+            <your_dockerhub_username>/flask-app:main
+
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
