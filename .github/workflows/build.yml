@@ -7,9 +7,9 @@ on:
   schedule:
     - cron: "0 19 * * 6"
 
-env:
-  DOCKER_HUB_USERNAME: <your_dockerhub_username>
-  DOCKER_HUB_PASSWORD: <your_dockerhub_password>
+# env:
+#   DOCKER_HUB_USERNAME: <your_dockerhub_username>
+#   DOCKER_HUB_PASSWORD: <your_dockerhub_password>
 
 jobs:
   build:
