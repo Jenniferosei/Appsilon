@@ -9,7 +9,7 @@ on:
 
 # env:
 #   DOCKER_HUB_USERNAME: <your_dockerhub_username>
-#   DOCKER_HUB_PASSWORD: <your_dockerhub_password>
+#   DOCKER_HUB_PASSWORD: <your_dockerhub_passwo
 
 jobs:
   build:
