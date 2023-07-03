@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: TestStuff
 
 on:
   push:
@@ -8,18 +8,19 @@ on:
     - cron: '0 19 * * 6'  # every Saturday at 7 PM
 
 jobs:
-  build:
+  try-stop-cluster:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Convert repo name to lower case
-        run: echo "REPO_NAME=$(echo ${{ github.repository }} | awk '{print tolower($0)}')" >> $GITHUB_ENV
-
-      - name: Login to GitHub Container Registry
-        run: echo "${{ secrets.GH_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Build and push Docker image
-        run: |
-          docker build -t ghcr.io/$REPO_NAME/app:latest .
-          docker push ghcr.io/$REPO_NAME/app:latest
+    - name: Install Azure CLI
+      run: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    - name: Check Azure CLI version
+      run: az --version    
+    - name: Azure Login
+      uses: azure/login@v1 
+      with:
+        creds: ${{ secrets.AZURE_SELF_HOSTED_RUNNER_CREDENTIALS }}
+    - name: Display Azure Account Info
+      run: |
+        az account show    
